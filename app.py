@@ -5,6 +5,7 @@ import time
 
 app = Flask(__name__)
 
+# Define prometheus metrics
 crypto_request_counter = Counter('crypto_request_count', 'Number of cryptocurrency API requests')
 crypto_request_duration = Gauge('crypto_request_duration_seconds', 'Duration of cryptocurrency API requests')
 
@@ -15,12 +16,14 @@ def get_crypto_data():
     start_time = time.time()
     crypto_request_counter.inc()
 
+# Define API key for Coinmarketcap
     api_key = '591a6beb-587b-48d9-89be-e6f5d77e5919' 
     headers = { 'X-CMC_PRO_API_KEY': api_key, 'Accepts': 'application/json' }
     params = { 'start': '1', 'limit': '5', 'convert': 'USD' }
     url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
 
     try:
+        # Make request to Coinmarketcap API
         response = requests.get(url, headers=headers, params=params)
         response.raise_for_status()  
 
