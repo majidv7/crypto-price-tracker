@@ -19,7 +19,7 @@ A Flask-based application that fetches top 5 cryptocurrency data (prices) from t
     
 The app will now be accessible at [http://localhost:5000](http://localhost:3000).
 
-4. **Now head to the Grafan Dashboard and add your desired metrics:**
+4. **Now head to the Grafana Dashboard and add your desired metrics:**
 
 [http://localhost:5000](http://localhost:5000).
 
