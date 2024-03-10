@@ -2,6 +2,7 @@ from flask import Flask
 from prometheus_client import Counter, Gauge, generate_latest, CONTENT_TYPE_LATEST
 import requests
 import time
+import os
 
 app = Flask(__name__)
 
@@ -11,13 +12,16 @@ crypto_request_duration = Gauge('crypto_request_duration_seconds', 'Duration of 
 
 crypto_price_gauges = {}
 
+api_key = os.getenv('API_KEY')
+
+if not api_key:
+    raise ValueError("API_KEY is not in environment variables.")
+
 @app.route('/')
 def get_crypto_data():
     start_time = time.time()
     crypto_request_counter.inc()
 
-# Define API key for Coinmarketcap
-    api_key = '591a6beb-587b-48d9-89be-e6f5d77e5919' 
     headers = { 'X-CMC_PRO_API_KEY': api_key, 'Accepts': 'application/json' }
     params = { 'start': '1', 'limit': '5', 'convert': 'USD' }
     url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
