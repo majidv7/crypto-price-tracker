@@ -21,7 +21,7 @@ The app will now be accessible at [http://localhost:5000](http://localhost:3000)
 
 4. **Now head to the Grafana Dashboard and add your desired metrics:**
 
-[http://localhost:5000](http://localhost:5000).
+[http://localhost:3000](http://localhost:3000).
 
 
 ---
