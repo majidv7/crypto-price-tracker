@@ -1,6 +1,8 @@
 # Crypto Price Tracker
 
-A Flask-based application that fetches top 5 cryptocurrency data (prices) from the Coinmarketcap API and exposes metrics for Prometheus & Grafana.
+A Flask-based application that fetches top 5 cryptocurrency prices from the CoinMarketCap API and exposes metrics for Prometheus & Grafana monitoring.
+
+---
 
 ## Usage
 
@@ -10,19 +12,41 @@ A Flask-based application that fetches top 5 cryptocurrency data (prices) from t
     cd crypto-price-tracker
     ```
 
-2. **Start the App with Docker Compose:**
+2. **Set up environment variables:**
+
+    Create your environment file from the example:
+
+    ```
+    cp .env.example .env
+    ```
+
+    Then update it with your own values:
+
+    ```
+    API_KEY=your_coinmarketcap_api_key
+    GF_ADMIN_PASS=your_desired_grafana_password
+    ```   
+
+3. **Start the App with Docker Compose:**
     ```
     docker-compose up -d
-    ```    
+    ```
 
-3. **Check the app status:**
-    
-The app will now be accessible at [http://localhost:5000](http://localhost:3000).
+4. **Check the App Status:**
 
-4. **Now head to the Grafana Dashboard and add your desired metrics:**
+   The application will be available at:
 
-[http://localhost:3000](http://localhost:3000).
+   http://localhost:5000
 
+5. **Grafana Dashboard:**
+
+   Open Grafana to visualize metrics:
+
+   http://localhost:3000
+
+   Default login:
+   - Username: admin
+   - Password: (value from GF_ADMIN_PASS)
 
 ---
 
@@ -30,17 +54,26 @@ The app will now be accessible at [http://localhost:5000](http://localhost:3000)
 
 Before running the application, ensure you have the following:
 
-1. **Coinmarketcap API Key:**
-   - Visit [Coinmarketcap Pro](https://pro.coinmarketcap.com).
-   - Obtain your API key.
+1. **CoinMarketCap API Key:**
+   - Visit [CoinMarketCap Pro](https://pro.coinmarketcap.com)
+   - Create an account and generate an API key
 
-2. **Update Environment in .env File:**
-   - Open the `.env` file in the project root.
-   - Add your Coinmarketcap API key and set your desired Grafana password:
+2. **Docker Installed:**
+   - Docker
+   - Docker Compose
 
-        ```
-        API_KEY=your_coinmarketcap_api_key
-        GF_ADMIN_PASS=your_desired_grafana_password
-        ```
+3. **Environment Configuration:**
+   - Create a `.env` file in the project root
+   - Add required variables:
 
-Make sure to keep your API key and Grafana admin password secure.
+    ```
+    API_KEY=your_coinmarketcap_api_key
+    GF_ADMIN_PASS=your_desired_grafana_password
+    ```
+
+---
+
+## Notes
+
+- Keep your API key and Grafana credentials secure
+- This project is intended for personal learning and observability practice (Prometheus + Grafana)
